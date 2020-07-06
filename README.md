@@ -1,7 +1,7 @@
 # Vue로 TodoList 하기
 
 ## 요구사항
-- [ ] Vue CIL을 이용해 Vue Project로 만들어 진행한다.
+- [x] Vue CIL을 이용해 Vue Project로 만들어 진행한다.
 - [ ] 제공해준 HTML, CSS를 이용해 Vue 컴포넌트를 만든다.
 - [ ] todo list에 todoItem을 키보드로 입력하여 추가하기
 - [ ] todo list의 체크박스를 클릭하여 complete 상태로 변경. (li tag 에 completed class 추가)
