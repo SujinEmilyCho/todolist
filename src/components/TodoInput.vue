@@ -2,6 +2,8 @@
 	<div>
 		<h1>TODOS</h1>
 		<input
+			v-model="newTodo"
+			v-on:keypress.enter="addTodo"
 			id="new-todo-title"
 			class="new-todo"
 			placeholder="할일을 추가해주세요"
@@ -12,7 +14,21 @@
 
 <script>
 export default {
-	name: 'TodoInput'
+	name: 'TodoInput',
+	data() {
+		return {
+			newTodo: '',
+		};
+	},
+	methods: {
+		addTodo() {
+			const todo = this.newTodo.trim();
+			if (todo !== '') {
+				this.$emit('addTodo', todo);
+				this.newTodo = '';
+			}
+		},
+	},
 };
 </script>
 

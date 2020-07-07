@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<todo-input></todo-input>
+		<todo-input v-on:addTodo="addTodo"></todo-input>
 		<todo-list v-bind:propsdata="todoItems"></todo-list>
 		<todo-footer></todo-footer>
 	</div>
@@ -18,6 +18,11 @@ export default {
 		return {
 			todoItems: ['할일1', '할일2'],
 		};
+	},
+	methods: {
+		addTodo(newTodo) {
+			this.todoItems.push(newTodo);
+		},
 	},
 };
 </script>
