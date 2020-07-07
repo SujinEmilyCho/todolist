@@ -1,7 +1,7 @@
 <template>
-	<li>
+	<li v-bind:class="{completed: isCompleted}">
 		<div class="view">
-			<input class="toggle" type="checkbox" />
+			<input v-on:click="completeTodo" class="toggle" type="checkbox" />
 			<label class="label">{{ todoItem }}</label>
 			<button class="destroy"></button>
 		</div>
@@ -12,7 +12,17 @@
 <script>
 export default {
 	name: 'TodoItem',
+	data() {
+		return {
+			isCompleted: false,
+		};
+	},
 	props: ['todoItem'],
+	methods: {
+		completeTodo() {
+			this.isCompleted = !this.isCompleted;
+		},
+	},
 };
 </script>
 
