@@ -5,7 +5,8 @@
 			<todo-item
 				v-for="todoItem in propsdata"
 				v-bind:todoItem="todoItem"
-        v-on:deleteTodo="deleteTodo"
+				v-on:deleteTodo="deleteTodo"
+				v-on:editTodo="editTodo"
 			></todo-item>
 		</ul>
 	</div>
@@ -18,11 +19,14 @@ export default {
 	name: 'TodoList',
 	components: {TodoItem},
 	props: ['propsdata'],
-  methods: {
-    deleteTodo(todoItem) {
-      this.$emit("deleteTodo", todoItem)
+	methods: {
+		deleteTodo(todoItem) {
+			this.$emit('deleteTodo', todoItem);
+		},
+    editTodo(todoItem, editedItem) {
+		  this.$emit('editTodo', todoItem, editedItem);
     }
-  }
+	},
 };
 </script>
 

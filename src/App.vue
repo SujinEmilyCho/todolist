@@ -4,6 +4,7 @@
 		<todo-list
 			v-bind:propsdata="todoItems"
 			v-on:deleteTodo="deleteTodo"
+			v-on:editTodo="editTodo"
 		></todo-list>
 		<todo-footer></todo-footer>
 	</div>
@@ -27,9 +28,13 @@ export default {
 			this.todoItems.push(newTodo);
 		},
 		deleteTodo(todoItem) {
-		  const todoIndex = this.todoItems.indexOf(todoItem);
-		  this.todoItems.splice(todoIndex, 1);
-    },
+			const todoIndex = this.todoItems.indexOf(todoItem);
+			this.todoItems.splice(todoIndex, 1);
+		},
+		editTodo(todoItem, editedItem) {
+			const todoIndex = this.todoItems.indexOf(todoItem);
+			this.todoItems.splice(todoIndex, 1, editedItem);
+		},
 	},
 };
 </script>

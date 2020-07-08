@@ -1,11 +1,19 @@
 <template>
-	<li v-bind:class="{completed: isCompleted}">
+	<li
+		v-on:dblclick="editTodo"
+		v-bind:class="({completed: isCompleted}, {editing: isEditing})"
+	>
 		<div class="view">
 			<input v-on:click="completeTodo" class="toggle" type="checkbox" />
 			<label class="label">{{ todoItem }}</label>
 			<button v-on:click="deleteTodo" class="destroy"></button>
 		</div>
-		<input class="edit" v-bind:value="todoItem" />
+		<input
+			class="edit"
+			v-on:keyup.esc="cancelEdit"
+			v-on:keyup.enter="finishEdit"
+			v-model:value="todoTitle"
+		/>
 	</li>
 </template>
 
@@ -15,6 +23,8 @@ export default {
 	data() {
 		return {
 			isCompleted: false,
+			isEditing: false,
+			todoTitle: this.todoItem,
 		};
 	},
 	props: ['todoItem'],
@@ -24,6 +34,16 @@ export default {
 		},
 		deleteTodo() {
 			this.$emit('deleteTodo', this);
+		},
+		editTodo() {
+			this.isEditing = !this.isEditing;
+		},
+		cancelEdit() {
+			this.isEditing = !this.isEditing;
+		},
+		finishEdit() {
+		  this.$emit("editTodo", this.todoItem, this.todoTitle);
+			this.isEditing = !this.isEditing;
 		},
 	},
 };
