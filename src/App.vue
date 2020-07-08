@@ -1,7 +1,10 @@
 <template>
 	<div id="app">
 		<todo-input v-on:addTodo="addTodo"></todo-input>
-		<todo-list v-bind:propsdata="todoItems"></todo-list>
+		<todo-list
+			v-bind:propsdata="todoItems"
+			v-on:deleteTodo="deleteTodo"
+		></todo-list>
 		<todo-footer></todo-footer>
 	</div>
 </template>
@@ -23,6 +26,10 @@ export default {
 		addTodo(newTodo) {
 			this.todoItems.push(newTodo);
 		},
+		deleteTodo(todoItem) {
+		  const todoIndex = this.todoItems.indexOf(todoItem);
+		  this.todoItems.splice(todoIndex, 1);
+    },
 	},
 };
 </script>

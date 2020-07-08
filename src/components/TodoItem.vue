@@ -3,7 +3,7 @@
 		<div class="view">
 			<input v-on:click="completeTodo" class="toggle" type="checkbox" />
 			<label class="label">{{ todoItem }}</label>
-			<button class="destroy"></button>
+			<button v-on:click="deleteTodo" class="destroy"></button>
 		</div>
 		<input class="edit" v-bind:value="todoItem" />
 	</li>
@@ -21,6 +21,9 @@ export default {
 	methods: {
 		completeTodo() {
 			this.isCompleted = !this.isCompleted;
+		},
+		deleteTodo() {
+			this.$emit('deleteTodo', this);
 		},
 	},
 };
